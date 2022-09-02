@@ -1,3 +1,19 @@
 .App {
   text-align: center;
 }
+
+.definition-parent {
+  justify-items: center;
+}
+
+.definition-child-cla {
+  margin-left: 5%;
+  width: 5%;
+  float: left;
+}
+
+.definition-child-def {
+  width: 90%;
+  float: left;
+  text-align: left;
+}
