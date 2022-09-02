@@ -2,7 +2,7 @@ const fs = require("fs");
 const {parse} = require("csv-parse");
 
 
-const cleanWord = (word) => word[0].toUpperCase() + word.slice(1);
+const cleanWord = (word) => word[0].toUpperCase() + word.slice(1).toLowerCase();
 
 
 module.exports = function handleGetDefinition(req, res) {

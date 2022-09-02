@@ -4,7 +4,6 @@ const handleGetDefinition = require("./handlerFunctions/handleGetDefinition")
 PORT = 8000;
 
 
-
 app.get("/example", (req,res) => {
     const {text} = req.query;
     const msg = "This is an example response.\nYou entered the text: " + (text ? text : "");
