@@ -4,6 +4,7 @@ const fetchDefinitions = require("./networking/fetchDefinitions");
 const BACKEND_PATH = "http://localhost:8000";
 const INITIAL_WORD = "Research";
 const NO_RESULTS_MESSAGE = "Sorry, our dictionary doesn't have any results for that word";
+const WELCOME_MESSAGE = "Simple Web Dictionary"
 
 
 function App() {
@@ -44,7 +45,7 @@ function App() {
   
   return (
     <div className="App">
-      <h1 style={{textDecoration:"underline"}}>Welcome to the Tiny Dictionary!</h1>
+      <h1 className="header-message">{WELCOME_MESSAGE}</h1>
       <div className="dictionary">
         <div className="search-form-wrapper">
           <h1>Look up a word!</h1>
@@ -54,7 +55,7 @@ function App() {
           </form>
         </div>
         <div className="results-section">
-          <h2 style={{textDecoration:"underline"}}>{currentWord}</h2>
+          <h2 style={{textDecoration:"underline",margin:"0"}}>{currentWord}</h2>
           {results.definitions.length === 0 && <h3>{NO_RESULTS_MESSAGE}</h3>}
           {results.definitions.length > 0 && <div className="results-wrapper">{displayResults()}</div>}
           {results.definitions.length > 1 && <button onClick={toggleShowAllDefs}>{showAllDefs ? "Show Less" : "Show More"}</button>}
