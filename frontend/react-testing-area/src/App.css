@@ -13,7 +13,8 @@
 }
 
 .definition-child-def {
-  width: 90%;
+  margin-right: 5%;
+  width: 85%;
   float: left;
   text-align: left;
 }
