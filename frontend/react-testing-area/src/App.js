@@ -3,6 +3,7 @@ import {useState, useEffect} from "react";
 const fetchDefinitions = require("./networking/fetchDefinitions");
 const BACKEND_PATH = "http://localhost:8000";
 const INITIAL_WORD = "Research";
+const NO_RESULTS_MESSAGE = "Sorry, our dictionary doesn't have any results for that word";
 
 
 function App() {
@@ -31,8 +32,8 @@ function App() {
   function displayResults() {
     return results.definitions.map((result, i) => {
       return (
-        <div key={i}>
-          <div className={showAllDefs ? "definition-parent-show" : "definition-parent-hide"} id={`definition-${i}`}>
+        <div className="definition-wrapper" id={`definition-wrapper-${i}`} key={i}>
+          <div className={i === 0 || showAllDefs ? "definition-parent-show" : "definition-parent-hide"} id={`definition-${i}`}>
             <p className="def-child-classification">{result.classification}</p>
             <p className="def-child-definition">{result.definition}</p>
           </div>
@@ -43,14 +44,22 @@ function App() {
   
   return (
     <div className="App">
-      <h1>Look up a word!</h1>
-      <form id="word-form"  onSubmit={handleSubmitWord}>
-        <input id="word-input" type="text"/>
-        <button id="word-submit" type="submit">Submit!</button>
-      </form>
-      <h1>{currentWord}</h1>
-      <div>{displayResults()}</div>
-  { results.definitions.length > 1 && <button onClick={toggleShowAllDefs}>{showAllDefs ? "Show Less" : "Show More"}</button> }
+      <h1>Welcome to the Tiny Dictionary!</h1>
+      <div className="dictionary">
+        <div className="search-form-wrapper">
+          <h2>Look up a word!</h2>
+          <form id="word-form"  onSubmit={handleSubmitWord}>
+            <input id="word-input" type="text"/>
+            <button id="word-submit" type="submit">Submit!</button>
+          </form>
+        </div>
+        <div className="results-section">
+          <h2>{currentWord}</h2>
+          {results.definitions.length === 0 && <h3>{NO_RESULTS_MESSAGE}</h3>}
+          {results.definitions.length > 0 && <div className="results-wrapper">{displayResults()}</div> }
+          {results.definitions.length > 1 && <button onClick={toggleShowAllDefs}>{showAllDefs ? "Show Less" : "Show More"}</button> }
+        </div>
+      </div>
     </div>
   );
 }

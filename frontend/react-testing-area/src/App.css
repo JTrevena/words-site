@@ -2,29 +2,36 @@
   text-align: center;
 }
 
+.dictionary {
+  text-align: left;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.results-section {
+  margin-top: 5%;
+}
+
+.results-wrapper {
+  margin-top: 2%;
+}
+
 .definition-parent-show {
-  justify-items: center;
   display: block;
+  padding-bottom: 2%;
 }
 
 .definition-parent-hide {
-  justify-items: center;
   display: none;
 }
 
-#definition-0 {
-  display: block;
-}
 
 .def-child-classification {
-  margin-left: 5%;
-  width: 5%;
-  float: left;
+  display: inline;
+  padding-right: 1%;
 }
 
 .def-child-definition {
-  margin-right: 5%;
-  width: 85%;
-  float: left;
-  text-align: left;
+  display: inline;
+  padding-left: 1%;
 }
