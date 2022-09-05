@@ -1,26 +1,35 @@
 import './App.css';
 import {useState, useEffect} from "react";
-const fetchDefinitions = require("./networking/fetchDefinitions")
-const BACKEND_PATH = "http://localhost:8000"
+const fetchDefinitions = require("./networking/fetchDefinitions");
+const BACKEND_PATH = "http://localhost:8000";
+const INITIAL_WORD = "Research";
 
 
 function App() {
-  const [currentWord, setCurrentWord] = useState("Reference");
+  const [currentWord, setCurrentWord] = useState(INITIAL_WORD);
   const [results, setResults] = useState({definitions: []});
+
+  useEffect(()=>{
+    async function updateResults() {
+      const results = await fetchDefinitions(BACKEND_PATH, currentWord);
+      setResults(results);
+    }
+    updateResults();
+  }, [currentWord])
   
   async function handleSubmitWord(e) {
     e.preventDefault();
     const word = e.target[0].value;
-    const results = await fetchDefinitions(BACKEND_PATH, word);
+    // const results = await fetchDefinitions(BACKEND_PATH, word);
     setCurrentWord(word);
-    setResults(results);
+    // setResults(results);
   }
 
   function displayResults() {
-    return results.definitions.map((result) => {
+    return results.definitions.map((result, i) => {
       return (
         <div>
-          <div className="definition-parent">
+          <div className="definition-parent" id={`definition-${i}`}>
             <p className="definition-child-cla">{result.classification}</p>
             <p className="definition-child-def">{result.definition}</p>
           </div>
