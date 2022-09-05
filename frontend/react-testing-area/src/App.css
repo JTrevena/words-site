@@ -2,17 +2,27 @@
   text-align: center;
 }
 
-.definition-parent {
+.definition-parent-show {
   justify-items: center;
+  display: block;
 }
 
-.definition-child-cla {
+.definition-parent-hide {
+  justify-items: center;
+  display: none;
+}
+
+#definition-0 {
+  display: block;
+}
+
+.def-child-classification {
   margin-left: 5%;
   width: 5%;
   float: left;
 }
 
-.definition-child-def {
+.def-child-definition {
   margin-right: 5%;
   width: 85%;
   float: left;

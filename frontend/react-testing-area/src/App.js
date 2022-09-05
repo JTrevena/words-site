@@ -8,6 +8,7 @@ const INITIAL_WORD = "Research";
 function App() {
   const [currentWord, setCurrentWord] = useState(INITIAL_WORD);
   const [results, setResults] = useState({definitions: []});
+  const [showAllDefs, setShowAllDefs] = useState(false);
 
   useEffect(()=>{
     async function updateResults() {
@@ -20,18 +21,20 @@ function App() {
   async function handleSubmitWord(e) {
     e.preventDefault();
     const word = e.target[0].value;
-    // const results = await fetchDefinitions(BACKEND_PATH, word);
     setCurrentWord(word);
-    // setResults(results);
+  }
+
+  async function toggleShowAllDefs() {
+    setShowAllDefs(!showAllDefs);
   }
 
   function displayResults() {
     return results.definitions.map((result, i) => {
       return (
-        <div>
-          <div className="definition-parent" id={`definition-${i}`}>
-            <p className="definition-child-cla">{result.classification}</p>
-            <p className="definition-child-def">{result.definition}</p>
+        <div key={i}>
+          <div className={showAllDefs ? "definition-parent-show" : "definition-parent-hide"} id={`definition-${i}`}>
+            <p className="def-child-classification">{result.classification}</p>
+            <p className="def-child-definition">{result.definition}</p>
           </div>
         </div>
       )
@@ -47,6 +50,7 @@ function App() {
       </form>
       <h1>{currentWord}</h1>
       <div>{displayResults()}</div>
+  { results.definitions.length > 1 && <button onClick={toggleShowAllDefs}>{showAllDefs ? "Show Less" : "Show More"}</button> }
     </div>
   );
 }
