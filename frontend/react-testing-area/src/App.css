@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   background-color: cadetblue;
-  height: 100vh;
+  height: 100vh; /* TODO: Fix for words with many definitions which spill off the page*/
   width: 100%;
   margin: 0;
 }

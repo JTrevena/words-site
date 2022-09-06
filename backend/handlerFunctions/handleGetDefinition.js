@@ -21,9 +21,6 @@ module.exports = function handleGetDefinition(req, res) {
       console.log(error);
       res.status(500).json({ok: false, error})
     })
-    .on("end", () => {
-      res.status(200).json({ok: true, word, definitions: responses})
-    })
     .pipe(parse({ delimiter: ',', columns: true, ltrim: true}))
     .on("data", (row) => {
       if (row.word === word) {
